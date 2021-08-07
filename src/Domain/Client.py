@@ -9,4 +9,4 @@ class Client:
         self.name = name
         self.tpv = tpv
         self.segment_id = segment_id
-        self.locatin_id = location_id
+        self.location_id = location_id
