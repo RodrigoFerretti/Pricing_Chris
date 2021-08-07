@@ -1,0 +1,51 @@
+Negotiation:
+  type: object
+  properties:
+
+    Client:
+      type: object
+      properties:
+        id:
+          type: int
+        name:
+          type: str
+        segment:
+          type: int
+        location:
+          type: str
+        TPV:
+          type: float
+    
+    Seller:
+      type: object
+      properties:
+        id:
+          type: int
+        name:
+          type: str
+        type:
+          type: int
+    
+    Product:
+      type: object
+      properties:
+        id:
+          type: int
+        name:
+          type: str
+        fabrication_costs:
+          type: float
+        transport_costs:
+          type: float
+        taxes:
+          type: float
+        
+    Price:
+      type: object
+      properties:
+        offer:
+          type: float
+        minimum:
+          type: float
+        is_profitable:
+          type: bool
