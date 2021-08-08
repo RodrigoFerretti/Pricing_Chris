@@ -1,4 +1,5 @@
 from enforce_typing import enforce_types
+from decimal import Decimal
 
 
 @enforce_types
@@ -12,7 +13,7 @@ class Client:
         self.location_id = location_id
 
     @enforce_types
-    def set_client_level(self: object, highest_tpv_in_schema: float):
+    def set_client_level(self: object, highest_tpv_in_schema: Decimal):
         tpv_levels = {
             "1": 
             {
