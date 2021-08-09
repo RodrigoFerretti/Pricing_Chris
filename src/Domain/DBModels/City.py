@@ -1,5 +1,5 @@
 from Setup.ORM import sa
-from Domain.Models.State import StateModel
+from Domain.DBModels.State import StateModel
 
 
 class CityModel(sa.Model):
@@ -13,3 +13,6 @@ class CityModel(sa.Model):
         self.id = id
         self.name = name
         self.state_id = state_id
+
+    def as_dict(self):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}

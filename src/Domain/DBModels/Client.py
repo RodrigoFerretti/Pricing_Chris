@@ -1,7 +1,7 @@
 from Setup.ORM import sa
 from decimal import Decimal
-from Domain.Models.Segment import SegmentModel
-from Domain.Models.Location import LocationModel
+from Domain.DBModels.Segment import SegmentModel
+from Domain.DBModels.Location import LocationModel
 
 
 class ClientModel(sa.Model):
@@ -20,3 +20,6 @@ class ClientModel(sa.Model):
         self.tpv = tpv
         self.segment_id = segment_id
         self.location_id = location_id
+
+    def as_dict(self):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}

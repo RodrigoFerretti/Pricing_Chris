@@ -10,3 +10,6 @@ class StateModel(sa.Model):
     def __init__(self: object, id: int, name: str):
         self.id = id
         self.name = name
+
+    def as_dict(self):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}

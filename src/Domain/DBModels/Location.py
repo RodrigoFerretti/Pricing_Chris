@@ -1,9 +1,9 @@
 from Setup.ORM import sa
-from Domain.Models.City import CityModel
-from Domain.Models.State import StateModel
+from Domain.DBModels.City import CityModel
+from Domain.DBModels.State import StateModel
 
 
-class LocationModel(sa.Models):
+class LocationModel(sa.Model):
     __tablename__: str = 'location'
 
     id: int = sa.Column(sa.Integer, primary_key=True, autoincrement=True)
@@ -17,3 +17,6 @@ class LocationModel(sa.Models):
         self.name = name
         self.city_id = city_id
         self.state_id = state_id
+
+    def as_dict(self):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}

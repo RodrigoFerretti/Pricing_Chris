@@ -12,3 +12,6 @@ class SellerModel(sa.Model):
         self.id = id
         self.name = name
         self.type = type
+
+    def as_dict(self):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}

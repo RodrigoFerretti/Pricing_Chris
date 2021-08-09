@@ -1,7 +1,7 @@
 from Setup.ORM import sa
 from decimal import Decimal
-from Domain.Models.State import StateModel
-from Domain.Models.Product import ProductModel
+from Domain.DBModels.State import StateModel
+from Domain.DBModels.Product import ProductModel
 
 
 class StatePriceModel(sa.Model):
@@ -18,3 +18,6 @@ class StatePriceModel(sa.Model):
         self.price = price
         self.product_id = product_id
         self.state_id = state_id
+
+    def as_dict(self):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}

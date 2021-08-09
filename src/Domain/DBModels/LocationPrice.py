@@ -1,7 +1,7 @@
 from Setup.ORM import sa
 from decimal import Decimal
-from Domain.Models.Product import ProductModel
-from Domain.Models.Location import LocationModel
+from Domain.DBModels.Product import ProductModel
+from Domain.DBModels.Location import LocationModel
 
 
 class LocationPriceModel(sa.Model):
@@ -20,3 +20,6 @@ class LocationPriceModel(sa.Model):
         self.transportation_price = transportation_price
         self.product_id = product_id
         self.location_id = location_id
+
+    def as_dict(self):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}

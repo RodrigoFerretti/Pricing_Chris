@@ -13,3 +13,6 @@ class ProductModel(sa.Model):
         self.id = id
         self.name = name
         self.fabrication_costs = fabrication_costs
+
+    def as_dict(self):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
