@@ -132,14 +132,14 @@ class Negotiation:
         )
         return highest_level
 
-    def profits_and_looses(self):
+    def get_minimum_price(self):
         possible_prices = self.get_prices()
         minimum_price = possible_prices[self.level - 1]
         return minimum_price
 
     
     def price_offer_is_higher_than_minimum(self):
-        return None
+        return True if self.price_offer >= self.get_minimum_price() else False
 
 
 new_negotiation = Negotiation(
@@ -157,4 +157,4 @@ print(new_negotiation.level)
 
 print(new_negotiation.get_prices())
 
-print(new_negotiation.profits_and_looses())
+print(new_negotiation.get_minimum_price())
