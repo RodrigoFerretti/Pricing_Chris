@@ -1,1 +1,2 @@
 enforce_typing==1.0.0.post1
+Flask-SQLAlchemy==2.5.1
