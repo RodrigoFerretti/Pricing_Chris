@@ -13,13 +13,5 @@ class ClientModel(sa.Model):
     segment_id: int = sa.Column(sa.Integer, sa.ForeignKey(SegmentModel.id), nullable=False)
     location_id: int = sa.Column(sa.Integer, sa.ForeignKey(LocationModel.id), nullable=False)
 
-    def __init__(self: object, id: int, name: str, 
-                 tpv: Decimal, segment_id: int, location_id: int):
-        self.id = id
-        self.name = name
-        self.tpv = tpv
-        self.segment_id = segment_id
-        self.location_id = location_id
-
     def as_dict(self):
-        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
+        return {column.name: getattr(self, column.name) for column in self.__table__.columns}

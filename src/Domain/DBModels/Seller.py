@@ -8,10 +8,5 @@ class SellerModel(sa.Model):
     name: str = sa.Column(sa.VARCHAR(45), nullable=False)
     type: int = sa.Column(sa.Integer, nullable=False)
 
-    def __init__(self: object, id: int, name: str, type: int):
-        self.id = id
-        self.name = name
-        self.type = type
-
     def as_dict(self):
-        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
+        return {column.name: getattr(self, column.name) for column in self.__table__.columns}

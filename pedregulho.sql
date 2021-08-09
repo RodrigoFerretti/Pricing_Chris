@@ -114,71 +114,56 @@ CREATE TABLE IF NOT EXISTS `pedregulho`.`Product` (
 -- -----------------------------------------------------
 -- Table `pedregulho`.`LocationPrice`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `pedregulho`.`LocationPrice` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `price` DECIMAL(15, 2) NOT NULL,
-  `transportation_price` DECIMAL(15, 2) NOT NULL,
+CREATE TABLE IF NOT EXISTS `pedregulho`.`locationprice` (
   `product_id` INT NOT NULL,
   `location_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
+  `price` DECIMAL(15,2) NOT NULL,
+  `transportation_price` DECIMAL(15,2) NOT NULL,
+  PRIMARY KEY (`product_id`, `location_id`),
   INDEX `location_price_product_id_idx` (`product_id` ASC) VISIBLE,
   INDEX `location_price_location_id_idx` (`location_id` ASC) VISIBLE,
-  CONSTRAINT `location_price_product_id`
-    FOREIGN KEY (`product_id`)
-    REFERENCES `pedregulho`.`Product` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
   CONSTRAINT `location_price_location_id`
     FOREIGN KEY (`location_id`)
-    REFERENCES `pedregulho`.`Location` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    REFERENCES `pedregulho`.`location` (`id`),
+  CONSTRAINT `location_price_product_id`
+    FOREIGN KEY (`product_id`)
+    REFERENCES `pedregulho`.`product` (`id`))
 ;
 
 
 -- -----------------------------------------------------
 -- Table `pedregulho`.`CityPrice`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `pedregulho`.`CityPrice` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `price` DECIMAL(15, 2) NOT NULL,
+CREATE TABLE IF NOT EXISTS `pedregulho`.`cityprice` (
   `product_id` INT NOT NULL,
   `city_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
+  `price` DECIMAL(15,2) NOT NULL,
+  PRIMARY KEY (`product_id`, `city_id`),
   INDEX `city_price_product_id_idx` (`product_id` ASC) VISIBLE,
   INDEX `city_price_city_id_idx` (`city_id` ASC) VISIBLE,
-  CONSTRAINT `city_price_product_id`
-    FOREIGN KEY (`product_id`)
-    REFERENCES `pedregulho`.`Product` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
   CONSTRAINT `city_price_city_id`
     FOREIGN KEY (`city_id`)
-    REFERENCES `pedregulho`.`City` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    REFERENCES `pedregulho`.`city` (`id`),
+  CONSTRAINT `city_price_product_id`
+    FOREIGN KEY (`product_id`)
+    REFERENCES `pedregulho`.`product` (`id`))
 ;
 
 
 -- -----------------------------------------------------
 -- Table `pedregulho`.`StatePrice`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `pedregulho`.`StatePrice` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `price` DECIMAL(15, 2) NOT NULL,
+CREATE TABLE IF NOT EXISTS `pedregulho`.`stateprice` (
   `product_id` INT NOT NULL,
   `state_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
+  `price` DECIMAL(15,2) NOT NULL,
   INDEX `state_price_product_id_idx` (`product_id` ASC) VISIBLE,
   INDEX `state_price_state_id_idx` (`state_id` ASC) VISIBLE,
+  PRIMARY KEY (`product_id`, `state_id`),
   CONSTRAINT `state_price_product_id`
     FOREIGN KEY (`product_id`)
-    REFERENCES `pedregulho`.`Product` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    REFERENCES `pedregulho`.`product` (`id`),
   CONSTRAINT `state_price_state_id`
     FOREIGN KEY (`state_id`)
-    REFERENCES `pedregulho`.`State` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    REFERENCES `pedregulho`.`state` (`id`))
 ;

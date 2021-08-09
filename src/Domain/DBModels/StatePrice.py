@@ -7,17 +7,9 @@ from Domain.DBModels.Product import ProductModel
 class StatePriceModel(sa.Model):
     __tablename__: str = 'stateprice'
 
-    id: int = sa.Column(sa.Integer, primary_key=True, autoincrement=True)
+    product_id: int = sa.Column(sa.Integer, sa.ForeignKey(ProductModel.id), primary_key=True, nullable=False)
+    state_id: int = sa.Column(sa.Integer, sa.ForeignKey(StateModel.id), primary_key=True, nullable=False)
     price: Decimal = sa.Column(sa.DECIMAL(15, 2), nullable=False)
-    product_id: int = sa.Column(sa.Integer, sa.ForeignKey(ProductModel.id), nullable=False)
-    state_id: int = sa.Column(sa.Integer, sa.ForeignKey(StateModel.id), nullable=False)
-
-    def __init__(self: object, id: int, price: Decimal, 
-                 product_id: int, state_id: int):
-        self.id = id
-        self.price = price
-        self.product_id = product_id
-        self.state_id = state_id
 
     def as_dict(self):
-        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
+        return {column.name: getattr(self, column.name) for column in self.__table__.columns}

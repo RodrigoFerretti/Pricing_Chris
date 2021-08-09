@@ -9,10 +9,5 @@ class ProductModel(sa.Model):
     name: str = sa.Column(sa.VARCHAR(45), nullable=False)
     fabrication_costs: Decimal = sa.Column(sa.DECIMAL(15, 2), nullable=False)
 
-    def __init__(self: object, id: int, name: str, fabrication_costs: Decimal):
-        self.id = id
-        self.name = name
-        self.fabrication_costs = fabrication_costs
-
     def as_dict(self):
-        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
+        return {column.name: getattr(self, column.name) for column in self.__table__.columns}

@@ -11,12 +11,5 @@ class LocationModel(sa.Model):
     city_id: int = sa.Column(sa.Integer, sa.ForeignKey(CityModel.id), nullable=False)
     state_id: int = sa.Column(sa.Integer, sa.ForeignKey(StateModel.id), nullable=False)
 
-    def __init__(self: object, id: int, name: str, 
-                 city_id: int, state_id: int):
-        self.id = id
-        self.name = name
-        self.city_id = city_id
-        self.state_id = state_id
-
     def as_dict(self):
-        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
+        return {column.name: getattr(self, column.name) for column in self.__table__.columns}

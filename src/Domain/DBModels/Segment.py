@@ -10,11 +10,5 @@ class SegmentModel(sa.Model):
     taxes: Decimal = sa.Column(sa.DECIMAL(15, 2), nullable=False)
     fees: Decimal = sa.Column(sa.DECIMAL(15, 2), nullable=False)
 
-    def __init__(self: object, id: int, name: str, taxes: Decimal, fees: Decimal):
-        self.id = id
-        self.name = name
-        self.taxes = taxes
-        self.fees = fees
-
     def as_dict(self):
-        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
+        return {column.name: getattr(self, column.name) for column in self.__table__.columns}
