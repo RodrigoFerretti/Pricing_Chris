@@ -9,5 +9,6 @@ class ProductModel(sa.Model):
     name: str = sa.Column(sa.VARCHAR(45), nullable=False)
     fabrication_costs: Decimal = sa.Column(sa.DECIMAL(15, 2), nullable=False)
 
-    def as_dict(self):
-        return {column.name: getattr(self, column.name) for column in self.__table__.columns}
+    def as_dict(self: object):
+        model_dict: dict = {column.name: getattr(self, column.name) for column in self.__table__.columns}
+        return model_dict

@@ -9,5 +9,6 @@ class CityModel(sa.Model):
     name: str = sa.Column(sa.VARCHAR(45), nullable=False)
     state_id: int = sa.Column(sa.Integer, sa.ForeignKey(StateModel.id), nullable=False)
 
-    def as_dict(self):
-        return {column.name: getattr(self, column.name) for column in self.__table__.columns}
+    def as_dict(self: object):
+        model_dict: dict = {column.name: getattr(self, column.name) for column in self.__table__.columns}
+        return model_dict

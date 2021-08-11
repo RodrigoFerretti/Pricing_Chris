@@ -14,5 +14,6 @@ class LocationPriceModel(sa.Model):
     price: Decimal = sa.Column(sa.DECIMAL(15, 2), nullable=False)
     transportation_price: Decimal = sa.Column(sa.DECIMAL(15, 2), nullable=False)
 
-    def as_dict(self):
-        return {column.name: getattr(self, column.name) for column in self.__table__.columns}
+    def as_dict(self: object):
+        model_dict: dict = {column.name: getattr(self, column.name) for column in self.__table__.columns}
+        return model_dict
