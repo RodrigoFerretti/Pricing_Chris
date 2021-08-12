@@ -31,19 +31,22 @@ As regras de negócio de cada pedra estão aplicada no cálculo de receita. A pr
 
 ## Instalação
 
-Instalando os pacotes da aplicação:
+Instalando mysql e python no docker:
 
 ```cmd
 
-> python -m pip install -r requirements.txt
+$ docker image pull mysql:latest
+
+$ docker image pull python:3.8
 
 ```
+
 
 Inicializando a aplicação:
 
 ```cmd
 
-> python app.py
+$ docker-compose up --build
 
 ```
 
