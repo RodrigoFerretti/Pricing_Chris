@@ -28,6 +28,48 @@ O preço mínimo da negociação é definido a partir do nível da mesma. Se o n
 
 As regras de negócio de cada pedra estão aplicada no cálculo de receita. A promoção desconsidera o segmento do cliente e oferece o menor preço de todos os preços daquele produto naquela localidade. A promoção é valida para todos os clientes.
 
+
+## Instalação
+
+Instalando os pacotes da aplicação:
+
+```cmd
+
+> python -m pip install -r requirements.txt
+
+```
+
+Inicializando a aplicação:
+
+```cmd
+
+> python app.py
+
+```
+
+Testando a aplicação:
+
+```cmd
+
+> pyhton -m pytest .\tests\main.py
+
+```
+
+## Utilização
+
+Depois de iniciar a aplicação, você poderá ver a documentação em swagger da api em:
+
+```link
+
+http://localhost:5000/api/docs
+
+```
+
+As rotas disponíveis para a aplicação são:
+- /negotiation POST
+- /promotion POST
+
+
 Por praticidade, os clientes e vendedores terão 'id's de acordo com seus níveis. 
 
 A api recebe o  payload no seguinte formato, em json:
@@ -56,40 +98,3 @@ e responderá, para este mesmo caso:
     }
 }
 ```
-
-
-Instalando os pacotes da aplicação:
-
-```cmd
-
-> python -m pip install -r requirements.txt
-
-```
-
-Inicializando a aplicação:
-
-```cmd
-
-> python app.py
-
-```
-
-Testando a aplicação:
-
-```cmd
-
-> pyhton -m pytest .\tests\main.py
-
-```
-
-Depois de iniciar a aplicação, você poderá ver a documentação em swagger da api em:
-
-```link
-
-http://localhost:5000/api/docs
-
-```
-
-As rotas disponíveis para a aplicação são:
-- /negotiation POST
-- /promotion POST
