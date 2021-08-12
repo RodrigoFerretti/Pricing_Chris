@@ -1,5 +1,4 @@
-from Setup.ORM import sa
-from decimal import Decimal
+from src.Setup.ORM import sa
 
 
 class SegmentModel(sa.Model):

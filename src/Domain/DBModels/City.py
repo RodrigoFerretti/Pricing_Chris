@@ -1,5 +1,5 @@
-from Setup.ORM import sa
-from Domain.DBModels.State import StateModel
+from src.Setup.ORM import sa
+from src.Domain.DBModels.State import StateModel
 
 
 class CityModel(sa.Model):

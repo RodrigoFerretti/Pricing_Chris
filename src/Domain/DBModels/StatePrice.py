@@ -1,8 +1,8 @@
-from Setup.ORM import sa
+from src.Setup.ORM import sa
 from decimal import Decimal
-from Domain.DBModels.State import StateModel
-from Domain.DBModels.Product import ProductModel
-from Domain.DBModels.Segment import SegmentModel
+from src.Domain.DBModels.State import StateModel
+from src.Domain.DBModels.Product import ProductModel
+from src.Domain.DBModels.Segment import SegmentModel
 
 
 class StatePriceModel(sa.Model):

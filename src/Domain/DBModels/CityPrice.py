@@ -1,8 +1,8 @@
-from Setup.ORM import sa
+from src.Setup.ORM import sa
 from decimal import Decimal
-from Domain.DBModels.City import CityModel
-from Domain.DBModels.Product import ProductModel
-from Domain.DBModels.Segment import SegmentModel
+from src.Domain.DBModels.City import CityModel
+from src.Domain.DBModels.Product import ProductModel
+from src.Domain.DBModels.Segment import SegmentModel
 
 
 class CityPriceModel(sa.Model):

@@ -1,7 +1,7 @@
-from Setup.ORM import sa
+from src.Setup.ORM import sa
 from decimal import Decimal
-from Domain.DBModels.Segment import SegmentModel
-from Domain.DBModels.Location import LocationModel
+from src.Domain.DBModels.Segment import SegmentModel
+from src.Domain.DBModels.Location import LocationModel
 
 
 class ClientModel(sa.Model):

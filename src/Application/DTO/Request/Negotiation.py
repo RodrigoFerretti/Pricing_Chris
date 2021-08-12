@@ -1,25 +1,24 @@
 from decimal import Decimal
 
-from Domain.DBModels.Client import ClientModel
-from Domain.DBModels.Seller import SellerModel
-from Domain.DBModels.Product import ProductModel
+from src.Domain.DBModels.Client import ClientModel
+from src.Domain.DBModels.Seller import SellerModel
+from src.Domain.DBModels.Product import ProductModel
 
-from Domain.Entities.Client import Client
-from Domain.Entities.Seller import Seller
-from Domain.Entities.Product import Product
+from src.Domain.Entities.Client import Client
+from src.Domain.Entities.Seller import Seller
+from src.Domain.Entities.Product import Product
 
-from Service.NotFoundException import NotFoundException
+from src.Application.Exceptions.NotFoundException import NotFoundException
 
 
-
-class NegotiationDTO:
+class NegotiationRequestDTO:
     def __init__(self: object, client_id: int, seller_id: int, product_id: int, price_offer: float):
         self.client: Client = self.get_client_by_id(client_id)
         self.seller: Seller = self.get_seller_by_id(seller_id)
         self.product: Product = self.get_product_by_id(product_id)
         self.price_offer: Decimal = Decimal(price_offer)
 
-    def get_client_by_id(self, client_id):
+    def get_client_by_id(self: object, client_id: int):
         try:
             client: Client = Client(
                 **ClientModel.query.filter(
@@ -29,8 +28,8 @@ class NegotiationDTO:
             return client
         except Exception:
             raise NotFoundException(ClientModel)
-    
-    def get_seller_by_id(self, seller_id):
+
+    def get_seller_by_id(self: object, seller_id: int):
         try:
             seller: Seller = Seller(
                 **SellerModel.query.filter(
@@ -40,8 +39,8 @@ class NegotiationDTO:
             return seller
         except Exception:
             raise NotFoundException(SellerModel)
-    
-    def get_product_by_id(self, product_id):
+
+    def get_product_by_id(self: object, product_id: int):
         try:
             product: Product = Product(
                 **ProductModel.query.filter(

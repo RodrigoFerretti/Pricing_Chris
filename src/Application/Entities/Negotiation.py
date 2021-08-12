@@ -1,35 +1,24 @@
 from decimal import Decimal
 
-from Domain.Entities.Client import Client
-from Domain.Entities.Seller import Seller
-from Domain.Entities.Product import Product
-from Domain.Entities.Location import Location
-from Domain.Entities.LocationPrice import LocationPrice
-from Domain.Entities.City import City
-from Domain.Entities.CityPrice import CityPrice
-from Domain.Entities.State import State
-from Domain.Entities.StatePrice import StatePrice
-from Domain.Entities.Segment import Segment
+from src.Domain.Entities.Client import Client
+from src.Domain.Entities.Seller import Seller
+from src.Domain.Entities.Product import Product
+from src.Domain.Entities.Location import Location
+from src.Domain.Entities.LocationPrice import LocationPrice
+from src.Domain.Entities.City import City
+from src.Domain.Entities.CityPrice import CityPrice
+from src.Domain.Entities.State import State
+from src.Domain.Entities.StatePrice import StatePrice
+from src.Domain.Entities.Segment import Segment
 
-from Domain.DBModels.LocationPrice import LocationPriceModel, LocationModel
-from Domain.DBModels.CityPrice import CityPriceModel, CityModel
-from Domain.DBModels.StatePrice import StatePriceModel, StateModel
-from Domain.DBModels.Segment import SegmentModel
-from Domain.DBModels.Client import ClientModel
+from src.Domain.DBModels.LocationPrice import LocationPriceModel, LocationModel
+from src.Domain.DBModels.CityPrice import CityPriceModel, CityModel
+from src.Domain.DBModels.StatePrice import StatePriceModel, StateModel
+from src.Domain.DBModels.Segment import SegmentModel
+from src.Domain.DBModels.Client import ClientModel
 
-from Service.ProfitsAndLooses import ProfitsAndLooses
-from Service.NotFoundException import NotFoundException
-
-from Domain.DTO.Negotiation import NegotiationDTO
-
-
-def get_highest_client_tpv():
-    highest_tpv: Decimal = ClientModel(
-        **ClientModel.query.order_by(
-            ClientModel.tpv.desc()
-            ).first().as_dict()
-        ).tpv
-    return highest_tpv
+from src.Application.Entities.ProfitsAndLooses import ProfitsAndLooses
+from src.Application.Exceptions.NotFoundException import NotFoundException
 
 
 class Negotiation:
@@ -156,11 +145,19 @@ class Negotiation:
         possible_prices.reverse()
         return possible_prices
 
+    def get_highest_client_tpv(self):
+        highest_tpv: Decimal = ClientModel(
+            **ClientModel.query.order_by(
+                ClientModel.tpv.desc()
+                ).first().as_dict()
+            ).tpv
+        return highest_tpv
+
     def get_negotiation_level(self: object):
         negotiation_levels: list(int) = [
             self.seller.type, 
             self.client.get_client_level(
-                get_highest_client_tpv()
+                self.get_highest_client_tpv()
             )
         ]
         highest_level: int = max(negotiation_levels)

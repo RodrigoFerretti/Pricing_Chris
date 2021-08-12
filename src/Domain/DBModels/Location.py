@@ -1,6 +1,6 @@
-from Setup.ORM import sa
-from Domain.DBModels.City import CityModel
-from Domain.DBModels.State import StateModel
+from src.Setup.ORM import sa
+from src.Domain.DBModels.City import CityModel
+from src.Domain.DBModels.State import StateModel
 
 
 class LocationModel(sa.Model):
