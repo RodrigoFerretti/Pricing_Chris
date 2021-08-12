@@ -1,0 +1,186 @@
+openapi: 3.0.0
+info:
+  version: '1.0'
+  title: Pedregulho
+  description: ''
+  contact:
+    name: ''
+
+tags:
+- name: Negotiation
+  description: Negotiation route for retrieving profits and looses
+- name: Promotion
+  description: Negotiation route for retrieving profits and looses in promotion cases
+
+paths:
+  /negotiation:
+    post:
+      tags: 
+      - Negotiation
+      summary: Negotiation Profits and Looses
+      operationId: GetNegotiationPNL
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                client_id: 
+                  type: integer
+                seller_id:
+                  type: integer
+                product_id:
+                  type: integer
+                price_offer:
+                  type: number
+                  multipleOf: 0.01
+              required:
+                - client_id
+                - seller_id
+                - product_id
+                - price_offer
+            required: true
+            description: JSON body payload to get negotiation profits and looses
+            examples:
+              Low Client Low Seller First Product:
+                value:
+                  client_id: 1
+                  seller_id: 1
+                  product_id: 1
+                  price_offer: 1.80
+
+      responses:
+        '200':
+          description: OK
+          content: 
+            application/json:
+              schmea:
+                description: Success JSON response body
+                type: object
+                properties:
+                  price_offer_is_higher_than_minimum:
+                    type: bool
+                  pnl:
+                    type: object
+                    properties:
+                      revenue:
+                        type: string
+                      expenses:
+                        type: string
+                      expenses_percentage:
+                        type: string
+                      profit:
+                        type: string
+                      profit_percentage:
+                        type: string
+              examples:
+                Low Client Low Seller First Product:
+                  value:
+                    price_offer_is_higher_than_minimum: true
+                    pnl:
+                      revenue: "R$ 180.00"
+                      expenses: "R$ 74.25"
+                      expenses_percentage: "41%"
+                      profit: "R$ 105.75"
+                      profit_percentage: "59%"
+
+        '400':
+          description: Bad request
+          content: 
+            application/json:
+              schmea:
+                description: bad request error message
+                type: object
+                properties:
+                  ErrorMessage:
+                    type: string
+              examples:
+                Invalid type for price_offer:
+                  value:
+                    ErrorMessage: Excpeted type number for price_offer but received string
+
+
+  /promotion:
+    post:
+      tags: 
+      - Promotion
+      summary: Promotion Negotiation Profits and Looses
+      operationId: GetNegotiationPNL
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                client_id: 
+                  type: integer
+                seller_id:
+                  type: integer
+                product_id:
+                  type: integer
+                price_offer:
+                  type: number
+                  multipleOf: 0.01
+              required:
+                - client_id
+                - seller_id
+                - product_id
+                - price_offer
+            required: true
+            description: JSON body payload to get negotiation profits and looses
+            examples:
+              Mid Client Low Seller Second Product:
+                value:
+                  client_id: 2
+                  seller_id: 1
+                  product_id: 2
+                  price_offer: 250.10
+
+      responses:
+        '200':
+          description: OK
+          content: 
+            application/json:
+              schmea:
+                description: Success JSON response body
+                type: object
+                properties:
+                  price_offer_is_higher_than_minimum:
+                    type: bool
+                  pnl:
+                    type: object
+                    properties:
+                      revenue:
+                        type: string
+                      expenses:
+                        type: string
+                      expenses_percentage:
+                        type: string
+                      profit:
+                        type: string
+                      profit_percentage:
+                        type: string
+              examples:
+                Mid Client Low Seller Second Product:
+                  value:
+                    price_offer_is_higher_than_minimum: true
+                    pnl:
+                      revenue: "R$ 26.00"
+                      expenses: "R$ 15.93"
+                      expenses_percentage: "61%"
+                      profit: "R$ 10.07"
+                      profit_percentage: "39%"
+        '400':
+          description: Bad request
+          content: 
+            application/json:
+              schmea:
+                description: bad request error message
+                type: object
+                properties:
+                  ErrorMessage:
+                    type: string
+              examples:
+                Invalid type for price_offer:
+                  value:
+                    ErrorMessage: Excpeted type number for price_offer but received string

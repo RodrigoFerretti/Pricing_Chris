@@ -1,20 +1,20 @@
 import json
 from src.Setup.API import app
 from flask import request, Response
-from src.Application.Service.Negotiation import negotiation_service
+from src.Application.Service.Promotion import promotion_service
 
 
-@app.route('/negotiation', methods=['POST'])
-def negotiation_route():
+@app.route('/promotion', methods=['POST'])
+def promotion_negotiation_route():
     request_json: dict = request.json
     try:
-        result = negotiation_service(
+        result = promotion_service(
             request_json
         )
         return Response(
             response=json.dumps(
                 result
-            ), 
+            ),
             status=200,
             content_type='application/json'
         )

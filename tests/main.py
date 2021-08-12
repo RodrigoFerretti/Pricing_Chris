@@ -92,7 +92,7 @@ def test_promotion_mid_client_low_seller_second_product_low_price_offer():
                 "client_id": 2, 
                 "seller_id": 1, 
                 "product_id": 2, 
-                "price_offer": 250.00
+                "price_offer": 250.10
             }
         ).__dict__
     )

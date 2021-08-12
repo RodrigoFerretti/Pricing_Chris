@@ -15,8 +15,7 @@ Para acompanhar os 3 possíveis preços por localidade, haverão 3 níveis de ex
 
 Seguindo no raciocínio, será calculado, a partir do cliente com o maior TPV, 3 níveis de clientes. Para toda negociação, existirá 3 possíveis preços, que estarão armazenados em uma lista ordenada do mais caro para o mais barato.
 
-A lógica da negociação assumirá um nível a partir do maior nível entre cliente e vendedor. Se um vendedor do nível 3 negociar com um cliente nível 1, o nível da negociação será 3. Nessa situação, o cliente sempre possuirá um poder de barganha sobre o vendedor, e, caso um vendedor experiente ache importante fazer uma venda para um cliente com baixo nível, ele poderá fazer.
-O nível da negociação é definido pelo maior nível entre o vendedor e o cliente. Quanto maior o nível, menor o preço.
+A lógica da negociação assumirá um nível a partir do maior nível entre cliente e vendedor. Se um vendedor do nível 3 negociar com um cliente nível 1, o nível da negociação será 3. Nessa situação, o cliente sempre possuirá um poder de barganha sobre o vendedor, e, caso um vendedor experiente ache importante fazer uma venda para um cliente com baixo nível, ele poderá fazer. Quanto maior o nível, menor o preço.
 
 Na negociação, um cliente só entrará em acordo de pagar o preço mínimo calculado se sua oferta for menor ou igual a esse mínimo. Caso ele oferte um preço mais alto que o mínimo calculado, este será o preço que valerá para a venda do aluguel da pedra.
 
@@ -25,11 +24,13 @@ Clientes com baixo TPV ou em localidades com pouca demanda (menor preço de loca
 Clientes possuem também um segmento. O preço de um produto é definido pela combinação única de uma localidade e um segmento. Por exemplo, o produto 1 tem um preço para a localidade 1 e segmento 1, assim como um preço diferente para a localidade 1 e segmento 2 e assim sucesivamente.
 
 
-O preço mínimo da negociação é definido a partir do nível da mesma. Se o nível da negociação for 1, será escolhido o primeiro item da lista de preços possíveis (o mais caro). O preço final será o preço oferecido se este for maior que o preço mínimo, caso contrário, será o preço mínimo. 
+O preço mínimo da negociação é definido a partir do nível da mesma. Se o nível da negociação for 1, será escolhido o primeiro item da lista de preços possíveis (o mais caro). Reforçando: o preço final será o preço oferecido se este for maior que o preço mínimo, caso contrário, será o preço mínimo. 
 
-As regras de negócio de cada pedra estão aplicada no cálculo de revenue. A promoção desconsidera o segmento do cliente e oferece o menor preço de todos os preços daquele produto naquela localidade. A promoção é valida para todos os clientes.
+As regras de negócio de cada pedra estão aplicada no cálculo de receita. A promoção desconsidera o segmento do cliente e oferece o menor preço de todos os preços daquele produto naquela localidade. A promoção é valida para todos os clientes.
 
-Por praticidade, os clientes e vendedores terão 'id's de acordo com seus níveis. A api recebe o  payload no seguinte formato, em json:
+Por praticidade, os clientes e vendedores terão 'id's de acordo com seus níveis. 
+
+A api recebe o  payload no seguinte formato, em json:
 
 ```json
 {
@@ -80,3 +81,15 @@ Testando a aplicação:
 > pyhton -m pytest .\tests\main.py
 
 ```
+
+Depois de iniciar a aplicação, você poderá ver a documentação em swagger da api em:
+
+```link
+
+http://localhost:5000/api/docs
+
+```
+
+As rotas disponíveis para a aplicação são:
+- /negotiation POST
+- /promotion POST
