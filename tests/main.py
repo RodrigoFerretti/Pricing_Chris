@@ -1,6 +1,7 @@
 from decimal import Decimal
 from src.Application.DTO.Request.Negotiation import NegotiationRequestDTO
 from src.Application.Entities.Negotiation import Negotiation
+from src.Application.Entities.Promotion import PromotionNegotiation
 from src.Application.Service.Negotiation import negotiation_service
 
 
@@ -82,6 +83,26 @@ def test_mid_client_low_seller_second_product_low_price_offer():
     assert new_negotiation.final_price == new_negotiation.minimum_price
     assert new_negotiation.monthly_profits_and_looses.revenue == Decimal('27.00')
     assert new_negotiation.monthly_profits_and_looses.profit_percentage == Decimal('0.41')
+
+
+def test_promotion_mid_client_low_seller_second_product_low_price_offer():
+    new_negotiation: PromotionNegotiation = PromotionNegotiation(
+        **NegotiationRequestDTO(
+            **{
+                "client_id": 2, 
+                "seller_id": 1, 
+                "product_id": 2, 
+                "price_offer": 250.00
+            }
+        ).__dict__
+    )
+
+    assert new_negotiation.level == 2
+    assert new_negotiation.price_offer_is_higher_than_minimum == False
+    assert new_negotiation.minimum_price == new_negotiation.possible_prices[new_negotiation.level -1]
+    assert new_negotiation.final_price == new_negotiation.minimum_price
+    assert new_negotiation.monthly_profits_and_looses.revenue == Decimal('26.00')
+    assert new_negotiation.monthly_profits_and_looses.profit_percentage == Decimal('0.39')
 
 
 def test_low_client_mid_seller_third_product_low_price_offer():
