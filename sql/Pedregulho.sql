@@ -5,7 +5,7 @@ USE `pedregulho` ;
 -- Table `pedregulho`.`Segment`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `pedregulho`.`Segment` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL ,
   `name` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
 ;
@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS `pedregulho`.`Segment` (
 -- Table `pedregulho`.`State`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `pedregulho`.`State` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL ,
   `name` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
 ;
@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `pedregulho`.`State` (
 -- Table `pedregulho`.`City`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `pedregulho`.`City` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL ,
   `name` VARCHAR(45) NOT NULL,
   `state_id` INT NOT NULL,
   PRIMARY KEY (`id`),
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `pedregulho`.`City` (
 -- Table `pedregulho`.`Location`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `pedregulho`.`Location` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL ,
   `name` VARCHAR(45) NOT NULL,
   `city_id` INT NOT NULL,
   `state_id` INT NOT NULL,
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `pedregulho`.`Location` (
 -- Table `pedregulho`.`Client`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `pedregulho`.`Client` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL ,
   `name` VARCHAR(45) NOT NULL,
   `tpv` DECIMAL(15, 2) NOT NULL,
   `segment_id` INT NOT NULL,
@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `pedregulho`.`Client` (
 -- Table `pedregulho`.`Seller`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `pedregulho`.`Seller` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL ,
   `name` VARCHAR(45) NOT NULL,
   `type` INT NOT NULL,
   PRIMARY KEY (`id`))
@@ -102,7 +102,7 @@ CREATE TABLE IF NOT EXISTS `pedregulho`.`Seller` (
 -- Table `pedregulho`.`Product`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `pedregulho`.`Product` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL ,
   `name` VARCHAR(45) NOT NULL,
   `fabrication_costs` DECIMAL(15, 2) NOT NULL,
   PRIMARY KEY (`id`))
