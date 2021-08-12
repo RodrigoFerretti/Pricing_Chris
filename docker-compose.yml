@@ -5,9 +5,9 @@ services:
     restart: always
     environment:
       MYSQL_DATABASE: pedregulho
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: pedregulho_user
+      MYSQL_PASSWORD: pedregulho_password
+      MYSQL_ROOT_PASSWORD: pedregulho_password
     volumes:
       - .dbdata:/var/lib/mysql
       - ./sql:/docker-entrypoint-initdb.d
