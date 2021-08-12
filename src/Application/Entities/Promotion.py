@@ -13,7 +13,7 @@ class PromotionNegotiation(Negotiation):
                     LocationPriceModel.location_id == self.location.id
                 ).filter(
                     LocationPriceModel.product_id == self.product.id
-                ).first().as_dict()
+                ).order_by(LocationPriceModel.price).first().as_dict()
             )
             return location_price
         except Exception:
@@ -27,7 +27,7 @@ class PromotionNegotiation(Negotiation):
                     CityPriceModel.city_id == self.city.id
                 ).filter(
                     CityPriceModel.product_id == self.product.id
-                ).first().as_dict()
+                ).order_by(CityPriceModel.price).first().as_dict()
             )
             return city_price
         except Exception:
@@ -40,7 +40,7 @@ class PromotionNegotiation(Negotiation):
                     StatePriceModel.state_id == self.state.id
                 ).filter(
                     StatePriceModel.product_id == self.product.id
-                ).first().as_dict()
+                ).order_by(StatePriceModel.price).first().as_dict()
             )
             return state_price
         except Exception:
