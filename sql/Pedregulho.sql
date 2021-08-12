@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `pedregulho`.`City` (
   `name` VARCHAR(45) NOT NULL,
   `state_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `city_state_id_idx` (`state_id` ASC) VISIBLE,
+  INDEX `city_state_id_idx` (`state_id` ASC) ,
   CONSTRAINT `city_state_id`
     FOREIGN KEY (`state_id`)
     REFERENCES `pedregulho`.`State` (`id`)
@@ -47,8 +47,8 @@ CREATE TABLE IF NOT EXISTS `pedregulho`.`Location` (
   `city_id` INT NOT NULL,
   `state_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `location_city_id_idx` (`city_id` ASC) VISIBLE,
-  INDEX `location_state_id_idx` (`state_id` ASC) VISIBLE,
+  INDEX `location_city_id_idx` (`city_id` ASC) ,
+  INDEX `location_state_id_idx` (`state_id` ASC) ,
   CONSTRAINT `location_city_id`
     FOREIGN KEY (`city_id`)
     REFERENCES `pedregulho`.`City` (`id`)
@@ -72,8 +72,8 @@ CREATE TABLE IF NOT EXISTS `pedregulho`.`Client` (
   `segment_id` INT NOT NULL,
   `location_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `client_segment_id_idx` (`segment_id` ASC) VISIBLE,
-  INDEX `client_location_id_idx` (`location_id` ASC) VISIBLE,
+  INDEX `client_segment_id_idx` (`segment_id` ASC) ,
+  INDEX `client_location_id_idx` (`location_id` ASC) ,
   CONSTRAINT `client_segment_id`
     FOREIGN KEY (`segment_id`)
     REFERENCES `pedregulho`.`Segment` (`id`)
@@ -119,9 +119,9 @@ CREATE TABLE IF NOT EXISTS `pedregulho`.`locationprice` (
   `price` DECIMAL(15,2) NOT NULL,
   `transportation_price` DECIMAL(15,2) NOT NULL,
   PRIMARY KEY (`product_id`, `location_id`, `segment_id`),
-  INDEX `location_price_product_id_idx` (`product_id` ASC) VISIBLE,
-  INDEX `location_price_location_id_idx` (`location_id` ASC) VISIBLE,
-  INDEX `location_price_segment_id_idx` (`segment_id` ASC) VISIBLE,
+  INDEX `location_price_product_id_idx` (`product_id` ASC) ,
+  INDEX `location_price_location_id_idx` (`location_id` ASC) ,
+  INDEX `location_price_segment_id_idx` (`segment_id` ASC) ,
   CONSTRAINT `location_price_location_id`
     FOREIGN KEY (`location_id`)
     REFERENCES `pedregulho`.`location` (`id`),
@@ -145,9 +145,9 @@ CREATE TABLE IF NOT EXISTS `pedregulho`.`cityprice` (
   `segment_id` INT NOT NULL,
   `price` DECIMAL(15,2) NOT NULL,
   PRIMARY KEY (`product_id`, `city_id`, `segment_id`),
-  INDEX `city_price_product_id_idx` (`product_id` ASC) VISIBLE,
-  INDEX `city_price_city_id_idx` (`city_id` ASC) VISIBLE,
-  INDEX `city_price_segment_id_idx` (`segment_id` ASC) VISIBLE,
+  INDEX `city_price_product_id_idx` (`product_id` ASC) ,
+  INDEX `city_price_city_id_idx` (`city_id` ASC) ,
+  INDEX `city_price_segment_id_idx` (`segment_id` ASC) ,
   CONSTRAINT `city_price_city_id`
     FOREIGN KEY (`city_id`)
     REFERENCES `pedregulho`.`city` (`id`),
@@ -171,9 +171,9 @@ CREATE TABLE IF NOT EXISTS `pedregulho`.`stateprice` (
   `segment_id` INT NOT NULL,
   `price` DECIMAL(15,2) NOT NULL,
   PRIMARY KEY (`product_id`, `state_id`, `segment_id`),
-  INDEX `state_price_product_id_idx` (`product_id` ASC) VISIBLE,
-  INDEX `state_price_state_id_idx` (`state_id` ASC) VISIBLE,
-  INDEX `state_price_segment_id_idx` (`segment_id` ASC) VISIBLE,
+  INDEX `state_price_product_id_idx` (`product_id` ASC) ,
+  INDEX `state_price_state_id_idx` (`state_id` ASC) ,
+  INDEX `state_price_segment_id_idx` (`segment_id` ASC) ,
   CONSTRAINT `state_price_product_id`
     FOREIGN KEY (`product_id`)
     REFERENCES `pedregulho`.`product` (`id`),
