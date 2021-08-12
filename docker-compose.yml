@@ -9,7 +9,6 @@ services:
       MYSQL_PASSWORD: pedregulho_password
       MYSQL_ROOT_PASSWORD: pedregulho_password
     volumes:
-      - dbdata:/var/lib/mysql
       - ./sql:/docker-entrypoint-initdb.d
     ports:
       - 3306:3306
@@ -24,6 +23,3 @@ services:
     - .:/app
     depends_on:
     - mysql-database
-
-volumes:
-  dbdata:
