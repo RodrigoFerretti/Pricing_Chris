@@ -1,5 +1,30 @@
 # Pricing_Chris
 
+Para iniciar a aplicação:
+
+```cmd
+
+> python -m pip install -r requirements.txt
+
+
+```
+
+```cmd
+
+> python app.py
+
+
+```
+Para testar a aplicação:
+
+```cmd
+
+> pyhton -m pytest .\tests\main.py
+
+
+```
+
+
 O aplicação possui 3 produtos diferentes a serem vendidos. 
 
 É necessário, para vender um produto, de uma consulta de preços por região. Como descrito que os valores flutuam pouco dentro de um estado e muito dentro de uma cidade, existirão 3 níveis de localidade. Um cliente está em uma localidade da cidade, que está contida em uma cidade, que está contida em um estado. 
@@ -41,7 +66,7 @@ Por praticidade, os clientes e vendedores terão 'id's de acordo com seus nívei
     "price_offer": 1.80
 
 }
-``
+```
 
 e responderá, para este mesmo caso:
 
@@ -56,5 +81,5 @@ e responderá, para este mesmo caso:
         "profit_percentage": "59%"
     }
 }
-``
+```
 
